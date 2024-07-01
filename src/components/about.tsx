@@ -46,7 +46,7 @@ export default function About() {
             <div className="about-buttons">
               <a
                 download=""
-                href="/assets/Profile-Gilberto-Santos.pdf"
+                href="/assets/cv-gilbertosantos.pdf"
                 className="button button-flex"
               >
                 Download Resume
