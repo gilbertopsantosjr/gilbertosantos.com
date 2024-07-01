@@ -55,7 +55,7 @@ export default function Dashboard() {
                     className="home-blob-img"
                     x="-15"
                     y="-5"
-                    href="Assets/Icons/logo1.png"
+                    href="assets/icons/logo1.png"
                   />
                 </g>
               </svg>

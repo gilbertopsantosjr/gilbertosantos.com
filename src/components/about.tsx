@@ -67,7 +67,7 @@ export default function About() {
                     target="_blank"
                     href="https://www.credly.com/badges/e5119e33-ee64-4162-8d71-670fad592c69/public_url"
                   >
-                    <Image src={aws} alt="" className="about-img" />
+                    <Image src={aws} alt="AWS Certification" className="about-img" />
                   </a>
                 </span>
               </div>
@@ -77,7 +77,7 @@ export default function About() {
                     target="_blank"
                     href="https://www.credly.com/badges/bb425077-e850-497b-8fa2-f1f8460a96eb/public_url"
                   >
-                    <Image src={oracle_core} alt="" className="about-img" />
+                    <Image src={oracle_core} alt="Oracle Certification" className="about-img" />
                   </a>
                 </span>
               </div>
@@ -87,7 +87,7 @@ export default function About() {
                     target="_blank"
                     href="https://www.credly.com/badges/bfcf50d7-9822-4ead-a3eb-b6475a598f5e/public_url"
                   >
-                    <Image src={oracle_web} alt="" className="about-img" />
+                    <Image src={oracle_web} alt="Oracle Certification" className="about-img" />
                   </a>
                 </span>
               </div>
