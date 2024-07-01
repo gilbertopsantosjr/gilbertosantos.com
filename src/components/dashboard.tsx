@@ -63,10 +63,19 @@ export default function Dashboard() {
 
             <div className="home-data">
               <h1 className="home-title">Hi, I am Gilberto Santos</h1>
-              <h3 className="home-subtitle">Full Stack Software Engineer</h3>
+              <h3 className="home-subtitle">Principal Software Engineer</h3>
               <p className="home-description">
-                Passionate frontend developer specializing in pixel-perfect web
-                design.
+                Principal Software Engineer, with over 18 years of experience,
+                certified developer and continuously evolving and adapting to
+                new technologies. Presently, my focus lies on cutting-edge
+                technologies such as <strong>Java</strong>,
+                <strong>Spring Boot</strong>, Maven,
+                <strong>Gradle</strong>, <strong>GoLang</strong>,
+                <strong>Node JS</strong>,React JS,
+                <strong>Typescript</strong>,<strong>Nest JS</strong>, AWS,
+                <strong>Serverless First</strong>,
+                <strong>Event-Driven Architecture</strong>, CI/CD, IaC, Docker,
+                Kafka, <strong>Microservices</strong>, and Cloud computing.
               </p>
               <a href="#contact" className="button button-flex">
                 Contact Me
