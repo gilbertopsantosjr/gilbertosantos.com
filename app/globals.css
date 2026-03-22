@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-dm-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-crimson-pro: 'Crimson Pro', 'Crimson Text', Georgia, serif;
+  }
+
+  * {
+    @apply border-neutral-cool-gray dark:border-neutral-charcoal;
+  }
+
+  body {
+    @apply bg-white text-neutral-charcoal;
+    @apply dark:bg-neutral-navy-dark dark:text-neutral-cool-gray;
+    @apply antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display dark:text-neutral-light-gray leading-tight;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Button Components */
+  .btn-primary {
+    @apply bg-royal text-white px-7 py-3.5 rounded-button font-medium text-[0.9375rem];
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-royal-light hover:-translate-y-0.5 hover:shadow-button;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent text-royal border-[1.5px] border-royal px-7 py-3.5 rounded-button;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:bg-royal hover:text-white hover:-translate-y-0.5;
+  }
+
+  /* Card Components */
+  .card {
+    @apply bg-white rounded-card p-6 md:p-8;
+    @apply shadow-card border border-neutral-cool-gray/30;
+    @apply dark:bg-neutral-charcoal dark:border-neutral-charcoal dark:shadow-none;
+    @apply transition-all duration-[350ms];
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card:hover {
+    @apply -translate-y-1 shadow-card-hover;
+    @apply dark:shadow-lg;
+  }
+
+  .card-elevated {
+    @apply bg-white rounded-[1.5rem] shadow-elevated border border-neutral-cool-gray/20;
+    @apply dark:bg-neutral-charcoal dark:border-neutral-charcoal dark:shadow-lg;
+  }
+
+  /* Icon Container */
+  .icon-container {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center;
+    @apply bg-neutral-light-gray text-royal;
+    @apply dark:bg-neutral-navy-dark;
+  }
+
+  /* Section Spacing */
+  .section {
+    @apply py-section-y px-section-x;
+  }
+
+  .section-alt {
+    @apply bg-neutral-light-gray;
+    @apply dark:bg-[#141723];
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-container mx-auto px-section-x;
+  }
+
+  /* Blob Background */
+  .blob {
+    @apply absolute rounded-full blur-2xl opacity-20 animate-blob;
+    @apply dark:opacity-10;
+    will-change: transform;
+  }
+
+  /* Text Gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-royal to-royal-light bg-clip-text text-transparent;
+  }
+
+  /* Background Patterns */
+  .bg-pattern-grid {
+    background-image: url('/patterns/grid-pattern.svg');
+    background-size: 100px 100px;
+    background-repeat: repeat;
+    background-position: center;
+  }
+
+  .bg-pattern-circuit {
+    background-image: url('/patterns/circuit-pattern.svg');
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    background-position: center;
+  }
+
+  .bg-pattern-dots {
+    background-image: url('/patterns/dots-pattern.svg');
+    background-size: 60px 60px;
+    background-repeat: repeat;
+    background-position: center;
+  }
+
+  .bg-pattern-waves {
+    background-image: url('/patterns/waves-pattern.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+
+  /* Gradient Overlays */
+  .bg-gradient-royal {
+    background: linear-gradient(
+      135deg,
+      theme('colors.royal.DEFAULT / 3%') 0%,
+      theme('colors.royal.light / 5%') 100%
+    );
+  }
+
+  .bg-gradient-soft-purple {
+    background: linear-gradient(
+      135deg,
+      theme('colors.accent.soft-purple / 50%') 0%,
+      theme('colors.neutral.white / 30%') 100%
+    );
+  }
+
+  .bg-gradient-mesh {
+    background:
+      radial-gradient(at 0% 0%, theme('colors.accent.soft-purple / 30%') 0px, transparent 50%),
+      radial-gradient(at 100% 0%, theme('colors.accent.soft-peach / 20%') 0px, transparent 50%),
+      radial-gradient(at 100% 100%, theme('colors.accent.soft-yellow / 20%') 0px, transparent 50%),
+      radial-gradient(at 0% 100%, theme('colors.accent.soft-green / 30%') 0px, transparent 50%);
+  }
+
+  /* Combined pattern with gradient */
+  .bg-tech-pattern {
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      theme('colors.neutral.light-gray') 0%,
+      theme('colors.neutral.white') 100%
+    );
+  }
+
+  .bg-tech-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/patterns/grid-pattern.svg');
+    background-size: 100px 100px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-block bg-royal text-white text-xs font-semibold uppercase tracking-wider;
+    @apply px-2.5 py-1 rounded;
+  }
+
+  .badge-tag {
+    @apply inline-block bg-accent-soft-purple text-royal text-xs font-semibold px-2.5 py-1 rounded;
+    @apply dark:bg-royal/20 dark:text-royal-light;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+}
+
+/* Custom scrollbar — WebKit */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.neutral.light-gray');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.royal.DEFAULT');
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.royal.dark');
+}
+
+/* Custom scrollbar — Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.royal.DEFAULT') theme('colors.neutral.light-gray');
+}
+
+/* Dark mode scrollbar */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background: theme('colors.neutral.navy-dark');
+  }
+
+  html {
+    scrollbar-color: theme('colors.royal.DEFAULT') theme('colors.neutral.navy-dark');
+  }
+
+  /* Reduce pattern opacity in dark mode */
+  .bg-pattern-grid,
+  .bg-pattern-circuit,
+  .bg-pattern-dots,
+  .bg-pattern-waves {
+    opacity: 0.3;
+  }
+
+  .bg-gradient-soft-purple {
+    background: linear-gradient(
+      135deg,
+      theme('colors.royal.DEFAULT / 10%') 0%,
+      transparent 100%
+    );
+  }
+
+  .bg-gradient-royal {
+    background: linear-gradient(
+      135deg,
+      theme('colors.royal.DEFAULT / 5%') 0%,
+      theme('colors.royal.light / 8%') 100%
+    );
+  }
+
+  .bg-gradient-mesh {
+    background:
+      radial-gradient(at 0% 0%, theme('colors.royal.DEFAULT / 10%') 0px, transparent 50%),
+      radial-gradient(at 100% 0%, theme('colors.accent.soft-peach / 5%') 0px, transparent 50%),
+      radial-gradient(at 100% 100%, theme('colors.accent.soft-yellow / 5%') 0px, transparent 50%),
+      radial-gradient(at 0% 100%, theme('colors.accent.soft-green / 8%') 0px, transparent 50%);
+  }
+
+  .bg-tech-pattern {
+    background: linear-gradient(
+      135deg,
+      theme('colors.neutral.navy-dark') 0%,
+      theme('colors.neutral.charcoal') 100%
+    );
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: theme('colors.accent.soft-purple');
+  color: theme('colors.royal.DEFAULT');
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

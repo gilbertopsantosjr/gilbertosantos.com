@@ -1,0 +1,1359 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faRocket,
+  faCode,
+  faCloud,
+  faBolt,
+  faShieldAlt,
+  faChartLine,
+  faCheckCircle,
+  faAward,
+  faUsers,
+  faLightbulb,
+  faCogs,
+  faServer,
+  faLayerGroup,
+  faBars,
+  faTimes,
+  faEnvelope,
+  faArrowRight,
+  faStar,
+  faQuoteLeft,
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  faLinkedin,
+  faGithub,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons'
+
+export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const heroRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  })
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0])
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.9])
+
+  return (
+    <main className="overflow-x-hidden">
+      {/* Navigation */}
+      <Navigation mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+
+      {/* Hero Section */}
+      <HeroSection heroRef={heroRef} heroOpacity={heroOpacity} heroScale={heroScale} />
+
+      {/* Why Work With Me Section */}
+      <WhyWorkWithMeSection />
+
+      {/* What You Get Section */}
+      <WhatYouGetSection />
+
+      {/* How It Works Section */}
+      <HowItWorksSection />
+
+      {/* Why Different Section */}
+      <WhyDifferentSection />
+
+      {/* Proof & Credibility Section */}
+      <ProofSection />
+
+      {/* Portfolio Showcase */}
+      <PortfolioSection />
+
+      {/* Who This Is For Section */}
+      <WhoThisIsForSection />
+
+      {/* Why Not Cheap Section */}
+      <WhyNotCheapSection />
+
+      {/* Pricing Section */}
+      <PricingSection />
+
+      {/* Final CTA Section */}
+      <FinalCTASection />
+
+      {/* Footer */}
+      <Footer />
+    </main>
+  )
+}
+
+// Navigation Component
+function Navigation({ mobileMenuOpen, setMobileMenuOpen }: { mobileMenuOpen: boolean; setMobileMenuOpen: (open: boolean) => void }) {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const navLinks = [
+    { href: '#services', label: 'Services' },
+    { href: '#how-it-works', label: 'Process' },
+    { href: '#portfolio', label: 'Work' },
+    { href: '#pricing', label: 'Pricing' },
+  ]
+
+  return (
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
+      }`}
+    >
+      <div className="container-custom">
+        <div className="flex items-center justify-between h-20">
+          <motion.a
+            href="#"
+            className="text-2xl font-display font-bold text-neutral-navy-dark"
+            whileHover={{ scale: 1.05 }}
+          >
+            Gilberto Santos
+          </motion.a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-neutral-charcoal hover:text-royal transition-colors duration-300 font-medium"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a href="#contact" className="btn-primary">
+              Book Free Call
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-neutral-charcoal"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <FontAwesomeIcon icon={mobileMenuOpen ? faTimes : faBars} className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden py-4 space-y-4"
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="block py-2 text-neutral-charcoal hover:text-royal transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a href="#contact" className="btn-primary block text-center" onClick={() => setMobileMenuOpen(false)}>
+              Book Free Call
+            </a>
+          </motion.div>
+        )}
+      </div>
+    </motion.nav>
+  )
+}
+
+// Hero Section
+function HeroSection({ heroRef, heroOpacity, heroScale }: any) {
+  return (
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center pt-20 section overflow-hidden">
+      {/* Animated Blobs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-accent-soft-purple blob" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-soft-peach blob animation-delay-400" />
+      <div className="absolute top-40 right-20 w-64 h-64 bg-accent-soft-yellow blob animation-delay-800" />
+
+      <motion.div
+        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="container-custom relative z-10"
+      >
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          {/* Left Column - Text Content */}
+          <div className="text-center lg:text-left order-2 lg:order-1">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="badge mb-6">18+ Years Experience</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-hero-h1 font-bold text-neutral-navy-dark leading-tight mb-6"
+          >
+            Turn Your <span className="text-gradient">Million-Dollar Idea</span> Into a Real Micro-SaaS
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-neutral-medium-gray mb-8 leading-relaxed max-w-3xl mx-auto"
+          >
+            I&apos;m <span className="font-semibold text-neutral-charcoal">Gilberto Santos</span>, a Principal Software
+            Engineer with 18+ years helping founders turn ambitious ideas into fast, scalable cloud products.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-12 space-y-3"
+          >
+            {[
+              'From idea → MVP → scalable SaaS',
+              'Built using the same architectures used by companies like Citi',
+              'No bloated agencies. No junior teams. Just one senior engineer who owns the outcome',
+            ].map((point, index) => (
+              <div key={index} className="flex items-center justify-center lg:justify-start gap-3 text-neutral-charcoal">
+                <FontAwesomeIcon icon={faCheckCircle} className="text-royal w-5 h-5" />
+                <span className="text-lg">{point}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
+          >
+            <a href="#contact" className="btn-primary text-lg px-10 py-4">
+              Book a Free Strategy Call
+            </a>
+            <a href="#how-it-works" className="btn-secondary text-lg px-10 py-4">
+              See How It Works <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+            </a>
+          </motion.div>
+
+          {/* Trust Badges */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-16 flex flex-wrap justify-center gap-8 text-sm text-neutral-medium-gray"
+          >
+            <div className="flex items-center gap-2">
+              <FontAwesomeIcon icon={faAward} className="text-royal" />
+              <span>AWS Certified Solutions Architect</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FontAwesomeIcon icon={faAward} className="text-royal" />
+              <span>Oracle Certified Professional</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <FontAwesomeIcon icon={faUsers} className="text-royal" />
+              <span>Principal Engineer & Tech Lead</span>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+
+// Why Work With Me Section
+function WhyWorkWithMeSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section ref={ref} className="section section-alt" id="about">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
+          <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+            You Don&apos;t Just Need a Developer.{' '}
+            <span className="text-gradient">You Need a Product Architect.</span>
+          </h2>
+          <p className="text-lg text-neutral-medium-gray leading-relaxed">
+            Most SaaS projects fail not because of bad ideas — but because of wrong tech decisions, systems that
+            don&apos;t scale, slow delivery, or teams that don&apos;t understand the business.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3 className="text-2xl font-bold text-neutral-charcoal mb-6">
+              18+ Years Building Real-World Systems
+            </h3>
+            <ul className="space-y-4">
+              {[
+                'Microservices architecture',
+                'Event-driven systems',
+                'Serverless platforms',
+                'Enterprise-grade software',
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <FontAwesomeIcon icon={faCheckCircle} className="text-royal w-5 h-5 mt-1" />
+                  <span className="text-lg text-neutral-charcoal">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-lg text-neutral-medium-gray">
+              This means your Micro-SaaS is built <span className="font-semibold text-royal">right from day one</span>,
+              not patched later.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="card card-elevated p-10"
+          >
+            <div className="space-y-6">
+              {[
+                { icon: faAward, title: 'AWS Certified Solutions Architect', color: 'bg-accent-soft-purple' },
+                { icon: faAward, title: 'Oracle Certified Professional', color: 'bg-accent-soft-peach' },
+                { icon: faUsers, title: 'Principal Engineer, Tech Lead & Mentor', color: 'bg-accent-soft-green' },
+              ].map((badge, index) => (
+                <div key={index} className="flex items-center gap-4">
+                  <div className={`${badge.color} w-12 h-12 rounded-xl flex items-center justify-center`}>
+                    <FontAwesomeIcon icon={badge.icon} className="text-royal w-6 h-6" />
+                  </div>
+                  <span className="font-semibold text-neutral-charcoal">{badge.title}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// What You Get Section
+function WhatYouGetSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const services = [
+    {
+      icon: faLayerGroup,
+      title: 'SaaS Architecture & System Design',
+      description: 'Scalable, cloud-native architecture designed to grow with your business',
+      color: 'bg-accent-soft-purple',
+    },
+    {
+      icon: faRocket,
+      title: 'MVP Development',
+      description: 'Full-stack development from backend APIs to frontend interfaces',
+      color: 'bg-accent-soft-peach',
+    },
+    {
+      icon: faCloud,
+      title: 'Cloud & AWS Setup',
+      description: 'Production-ready infrastructure that scales when you grow',
+      color: 'bg-accent-soft-green',
+    },
+    {
+      icon: faCogs,
+      title: 'Microservices & Event-Driven',
+      description: 'Modern architecture patterns for complex business logic',
+      color: 'bg-accent-soft-yellow',
+    },
+    {
+      icon: faServer,
+      title: 'CI/CD & Automation',
+      description: 'Automated deployment pipelines for rapid iteration',
+      color: 'bg-accent-soft-purple',
+    },
+    {
+      icon: faBolt,
+      title: 'Production-Ready Systems',
+      description: 'Monitoring, logging, and performance optimization from day one',
+      color: 'bg-accent-soft-peach',
+    },
+  ]
+
+  return (
+    <section ref={ref} className="section" id="services">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+            What I <span className="text-gradient">Build For Founders</span>
+          </h2>
+          <p className="text-xl text-neutral-medium-gray max-w-3xl mx-auto">
+            You&apos;re not getting a freelancer. You&apos;re getting a CTO-level partner who owns the outcome.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="card group cursor-pointer"
+            >
+              <div className={`${service.color} w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <FontAwesomeIcon icon={service.icon} className="text-royal w-7 h-7" />
+              </div>
+              <h3 className="text-xl font-bold text-neutral-charcoal mb-3">{service.title}</h3>
+              <p className="text-neutral-medium-gray leading-relaxed">{service.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Comparison Table */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-20 max-w-3xl mx-auto"
+        >
+          <div className="card-elevated overflow-hidden">
+            <div className="grid grid-cols-2 divide-x divide-neutral-cool-gray">
+              <div className="p-8 space-y-6">
+                <h4 className="text-lg font-bold text-neutral-medium-gray mb-4">You Want</h4>
+                {['An idea', 'A landing page', 'A prototype', 'A dev'].map((item, i) => (
+                  <p key={i} className="text-neutral-charcoal">{item}</p>
+                ))}
+              </div>
+              <div className="p-8 space-y-6 bg-gradient-to-br from-accent-soft-purple to-accent-soft-peach">
+                <h4 className="text-lg font-bold text-royal mb-4">You Get</h4>
+                {['A real SaaS product', 'A revenue-ready funnel', 'A cloud-native system', 'A CTO-level partner'].map((item, i) => (
+                  <p key={i} className="font-semibold text-neutral-navy-dark">{item}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// How It Works Section
+function HowItWorksSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const steps = [
+    {
+      icon: faLightbulb,
+      number: '01',
+      title: 'Strategy Call',
+      description: 'We map your idea, business model, and technical risks.',
+    },
+    {
+      icon: faCode,
+      number: '02',
+      title: 'Architecture Design',
+      description: 'I design your system using patterns used by large tech companies.',
+    },
+    {
+      icon: faRocket,
+      number: '03',
+      title: 'Build the MVP',
+      description: 'We ship a real, usable product — not a demo.',
+    },
+    {
+      icon: faChartLine,
+      number: '04',
+      title: 'Launch & Scale',
+      description: 'Your SaaS is ready to take users, payments, and growth.',
+    },
+  ]
+
+  return (
+    <section ref={ref} className="section section-alt" id="how-it-works">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+            From Idea to Live Micro-SaaS{' '}
+            <span className="text-gradient">in 4 Steps</span>
+          </h2>
+          <p className="text-xl text-neutral-medium-gray max-w-2xl mx-auto">
+            A proven process that takes you from concept to market-ready product
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="relative"
+            >
+              <div className="card group cursor-pointer h-full">
+                <div className="text-6xl font-display font-bold text-neutral-light-gray mb-4 group-hover:text-accent-soft-purple transition-colors">
+                  {step.number}
+                </div>
+                <div className="bg-royal w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <FontAwesomeIcon icon={step.icon} className="text-white w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-neutral-charcoal mb-3">{step.title}</h3>
+                <p className="text-neutral-medium-gray leading-relaxed">{step.description}</p>
+              </div>
+              {/* Connection Line */}
+              {index < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-1/4 -right-4 w-8 h-0.5 bg-gradient-to-r from-royal to-royal-light" />
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Why Different Section
+function WhyDifferentSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section ref={ref} className="section">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
+          <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+            Most Developers Write Code.{' '}
+            <span className="text-gradient">I Design Businesses.</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6"
+          >
+            {[
+              'Led teams building microservices & serverless systems',
+              'Built high-performance cloud applications',
+              'Introduced clean code, testing, and scalable architecture',
+              'Mentored engineers and ran technical academies',
+              'Delivered enterprise-grade systems for companies like Citi',
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-4">
+                <div className="bg-royal w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                  <FontAwesomeIcon icon={faCheckCircle} className="text-white w-4 h-4" />
+                </div>
+                <p className="text-lg text-neutral-charcoal">{item}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="card-elevated p-10 bg-gradient-to-br from-royal to-royal-light text-white"
+          >
+            <FontAwesomeIcon icon={faQuoteLeft} className="text-white/30 w-12 h-12 mb-6" />
+            <p className="text-2xl font-display font-semibold leading-relaxed mb-6">
+              You get the thinking of a CTO — without hiring one.
+            </p>
+            <div className="flex items-center gap-4 pt-6 border-t border-white/20">
+              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                <FontAwesomeIcon icon={faAward} className="text-white w-6 h-6" />
+              </div>
+              <div>
+                <p className="font-semibold">18+ Years Experience</p>
+                <p className="text-sm text-white/80">Enterprise & Startup Systems</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Proof Section
+function ProofSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const testimonials = [
+    {
+      company: 'Citi – Data Analytics Team',
+      text: 'Gilberto migrated a huge Java system from Maven to Gradle, cutting build times from 5 minutes to 1 minute — improving the entire team\'s productivity.',
+      author: 'Tech Lead',
+      role: 'Enterprise Banking',
+      rating: 5,
+    },
+    {
+      company: 'Suntico',
+      text: 'He mastered a complex system fast, delivered results quickly, and naturally took ownership.',
+      author: 'Engineering Manager',
+      role: 'SaaS Platform',
+      rating: 5,
+    },
+    {
+      company: 'Tech Education',
+      text: 'Students credit his teaching for launching their software careers in real government and enterprise roles.',
+      author: 'Educational Institution',
+      role: 'Software Training',
+      rating: 5,
+    },
+  ]
+
+  return (
+    <section ref={ref} className="section section-alt">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+            People Trust Me with{' '}
+            <span className="text-gradient">Critical Systems</span>
+          </h2>
+          <p className="text-xl text-neutral-medium-gray max-w-2xl mx-auto">
+            From enterprise giants to fast-growing startups
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="card group cursor-pointer"
+            >
+              {/* Rating */}
+              <div className="flex gap-1 mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <FontAwesomeIcon key={i} icon={faStar} className="text-yellow-400 w-5 h-5" />
+                ))}
+              </div>
+
+              {/* Company Badge */}
+              <span className="badge-tag mb-4">{testimonial.company}</span>
+
+              {/* Testimonial Text */}
+              <p className="text-neutral-charcoal leading-relaxed mb-6 italic">
+                &quot;{testimonial.text}&quot;
+              </p>
+
+              {/* Author */}
+              <div className="pt-6 border-t border-neutral-cool-gray">
+                <p className="font-semibold text-neutral-charcoal">{testimonial.author}</p>
+                <p className="text-sm text-neutral-medium-gray">{testimonial.role}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-20 grid md:grid-cols-4 gap-8"
+        >
+          {[
+            { number: '18+', label: 'Years Experience' },
+            { number: '50+', label: 'Projects Delivered' },
+            { number: '100%', label: 'Client Satisfaction' },
+            { number: '24/7', label: 'Commitment' },
+          ].map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-5xl font-display font-bold text-royal mb-2">{stat.number}</div>
+              <div className="text-neutral-medium-gray">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// Portfolio Section
+function PortfolioSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const projects = [
+    {
+      title: 'Enterprise Microservices Platform',
+      category: 'Enterprise Architecture',
+      description: 'Scalable microservices platform handling millions of transactions',
+      image: '/images/project-1.svg',
+      tech: ['AWS', 'Kubernetes', 'Node.js', 'PostgreSQL'],
+    },
+    {
+      title: 'SaaS Analytics Dashboard',
+      category: 'Product Development',
+      description: 'Real-time analytics platform for growing SaaS companies',
+      image: '/images/project-2.svg',
+      tech: ['React', 'Python', 'Redis', 'AWS Lambda'],
+    },
+    {
+      title: 'Event-Driven Payment System',
+      category: 'Financial Technology',
+      description: 'Secure, scalable payment processing with event sourcing',
+      image: '/images/project-3.svg',
+      tech: ['Java', 'Kafka', 'PostgreSQL', 'Docker'],
+    },
+    {
+      title: 'Cloud Migration Project',
+      category: 'Cloud Infrastructure',
+      description: 'Migrated legacy monolith to cloud-native architecture',
+      image: '/images/project-4.svg',
+      tech: ['AWS', 'Terraform', 'Jenkins', 'Monitoring'],
+    },
+    {
+      title: 'Real-Time Collaboration Tool',
+      category: 'SaaS Product',
+      description: 'Collaborative workspace with real-time synchronization',
+      image: '/images/project-5.svg',
+      tech: ['Next.js', 'WebSockets', 'Redis', 'PostgreSQL'],
+    },
+  ]
+
+  return (
+    <section ref={ref} className="section" id="portfolio">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+            Selected <span className="text-gradient">Work</span>
+          </h2>
+          <p className="text-xl text-neutral-medium-gray max-w-2xl mx-auto">
+            Real systems, real impact, real results
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="card group cursor-pointer overflow-hidden p-0"
+            >
+              <div className="relative h-64 overflow-hidden bg-neutral-light-gray">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <span className="badge-tag mb-3">{project.category}</span>
+                <h3 className="text-xl font-bold text-neutral-charcoal mb-3">{project.title}</h3>
+                <p className="text-neutral-medium-gray mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, i) => (
+                    <span key={i} className="text-xs px-3 py-1 bg-neutral-light-gray text-neutral-charcoal rounded-full">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Who This Is For Section
+function WhoThisIsForSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section ref={ref} className="section section-alt">
+      <div className="container-custom max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+            Perfect If <span className="text-gradient">You Are...</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Perfect For */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="card-elevated p-8"
+          >
+            <div className="w-12 h-12 bg-accent-soft-green rounded-xl flex items-center justify-center mb-6">
+              <FontAwesomeIcon icon={faCheckCircle} className="text-royal w-6 h-6" />
+            </div>
+            <h3 className="text-2xl font-bold text-neutral-charcoal mb-6">Perfect For:</h3>
+            <ul className="space-y-4">
+              {[
+                'A founder with a SaaS idea',
+                'A non-technical entrepreneur',
+                'A startup that needs a real system, not a prototype',
+                'A business wanting to productize an idea',
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <FontAwesomeIcon icon={faCheckCircle} className="text-royal w-5 h-5 mt-1 flex-shrink-0" />
+                  <span className="text-lg text-neutral-charcoal">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Not For */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="card p-8 border-2 border-neutral-cool-gray"
+          >
+            <div className="w-12 h-12 bg-neutral-light-gray rounded-xl flex items-center justify-center mb-6">
+              <FontAwesomeIcon icon={faTimes} className="text-neutral-medium-gray w-6 h-6" />
+            </div>
+            <h3 className="text-2xl font-bold text-neutral-charcoal mb-6">Not For:</h3>
+            <ul className="space-y-4">
+              {[
+                'People looking for the cheapest dev',
+                'One-page websites',
+                'Fiverr-style gigs',
+                'Those not serious about building a business',
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <FontAwesomeIcon icon={faTimes} className="text-neutral-medium-gray w-5 h-5 mt-1 flex-shrink-0" />
+                  <span className="text-lg text-neutral-medium-gray line-through">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Why Not Cheap Section
+function WhyNotCheapSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section ref={ref} className="section relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-soft-purple blob" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-soft-peach blob animation-delay-400" />
+
+      <div className="container-custom relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+              <span className="text-gradient">Why I&apos;m Not Cheap</span>
+            </h2>
+            <p className="text-2xl text-neutral-charcoal font-semibold">
+              Because cheap SaaS is the most expensive mistake you can make
+            </p>
+          </div>
+
+          <div className="card-elevated p-10 mb-12">
+            <p className="text-xl text-neutral-charcoal leading-relaxed mb-8">
+              Most people think they&apos;re paying for code. They&apos;re not.
+            </p>
+            <p className="text-lg text-neutral-medium-gray leading-relaxed mb-6">
+              They&apos;re paying for:
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              {['Decisions', 'Architecture', 'Scalability', 'Security', 'Speed', 'Ability to grow without rewriting'].map(
+                (item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-royal rounded-full" />
+                    <span className="text-neutral-charcoal font-medium">{item}</span>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* What Cheap Devs Sell */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="card border-2 border-accent-coral/30"
+            >
+              <h3 className="text-xl font-bold text-accent-coral mb-4 flex items-center gap-2">
+                <FontAwesomeIcon icon={faTimes} />
+                What &quot;Cheap Developers&quot; Sell
+              </h3>
+              <ul className="space-y-3 text-neutral-medium-gray">
+                {[
+                  'A system that breaks at 100 users',
+                  'A database that can\'t scale',
+                  'Code no one else understands',
+                  'Fragile infrastructure',
+                  'An MVP that has to be thrown away',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-accent-coral mt-1">✗</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 font-semibold text-neutral-charcoal">
+                You don&apos;t pay less. You just pay twice.
+              </p>
+            </motion.div>
+
+            {/* What You Get With Gilberto */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="card bg-gradient-to-br from-accent-soft-green to-accent-soft-yellow"
+            >
+              <h3 className="text-xl font-bold text-royal mb-4 flex items-center gap-2">
+                <FontAwesomeIcon icon={faCheckCircle} />
+                What You Get With Gilberto
+              </h3>
+              <ul className="space-y-3 text-neutral-charcoal">
+                {[
+                  'Designed microservices & serverless systems',
+                  'Built event-driven platforms',
+                  'Worked on enterprise systems at Citi',
+                  'Led engineering teams',
+                  'Set up CI/CD & cloud infrastructure',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-royal mt-1">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 font-semibold text-neutral-navy-dark">
+                Built like a real company from day one.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="card-elevated p-10 text-center bg-gradient-to-br from-royal to-royal-light text-white"
+          >
+            <FontAwesomeIcon icon={faLightbulb} className="w-12 h-12 mb-6 mx-auto opacity-80" />
+            <h3 className="text-2xl font-bold mb-4">You&apos;re Not Buying Code</h3>
+            <p className="text-xl mb-6">You&apos;re buying 18 years of mistakes</p>
+            <p className="text-lg leading-relaxed opacity-90">
+              Every architecture decision I make prevents rewrites, downtime, lost customers, and investor red flags.
+              That&apos;s where the real ROI is.
+            </p>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// Pricing Section
+function PricingSection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  const tiers = [
+    {
+      name: 'Blueprint',
+      subtitle: 'Idea to Blueprint',
+      price: '€1,500',
+      description: 'Is this SaaS worth building?',
+      features: [
+        '90-minute deep strategy call',
+        'Business & technical feasibility analysis',
+        'SaaS architecture blueprint',
+        'Tech stack & cloud design',
+        'MVP feature list',
+        'Development roadmap (cost + timeline)',
+      ],
+      cta: 'Start with Blueprint',
+      highlight: false,
+      icon: faLightbulb,
+    },
+    {
+      name: 'MVP Launch',
+      subtitle: 'Get Real SaaS Live',
+      price: '€12k–€25k',
+      description: 'Get a real SaaS into the hands of users',
+      features: [
+        'Everything from Tier 1',
+        'Fully working SaaS MVP',
+        'Frontend + backend',
+        'Cloud hosting on AWS',
+        'Authentication & user accounts',
+        'Core product features',
+        'CI/CD & production deployment',
+        'Basic analytics & monitoring',
+        '6–10 weeks timeline',
+      ],
+      cta: 'Launch My SaaS',
+      highlight: true,
+      icon: faRocket,
+    },
+    {
+      name: 'Scale & Grow',
+      subtitle: 'Turn MVP into a Company',
+      price: '€3,500/mo',
+      description: 'Turn your MVP into a real company',
+      features: [
+        'System optimization & scaling',
+        'New feature development',
+        'Performance tuning',
+        'Security & reliability upgrades',
+        'Cloud cost optimization',
+        'Architecture evolution',
+        'CTO-level guidance',
+      ],
+      cta: 'Scale My Product',
+      highlight: false,
+      icon: faChartLine,
+    },
+  ]
+
+  return (
+    <section ref={ref} className="section section-alt" id="pricing">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-h2 font-bold text-neutral-navy-dark mb-6">
+            Choose <span className="text-gradient">How Far You Want to Go</span>
+          </h2>
+          <p className="text-xl text-neutral-medium-gray max-w-3xl mx-auto">
+            Simple, transparent pricing built around outcomes — not hours
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {tiers.map((tier, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className={`card group cursor-pointer relative ${
+                tier.highlight ? 'ring-2 ring-royal shadow-elevated' : ''
+              }`}
+            >
+              {tier.highlight && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <span className="badge">Most Popular</span>
+                </div>
+              )}
+
+              <div className="mb-6">
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${
+                  tier.highlight ? 'bg-royal' : 'bg-accent-soft-purple'
+                }`}>
+                  <FontAwesomeIcon icon={tier.icon} className={`w-7 h-7 ${
+                    tier.highlight ? 'text-white' : 'text-royal'
+                  }`} />
+                </div>
+                <h3 className="text-2xl font-bold text-neutral-charcoal mb-1">{tier.name}</h3>
+                <p className="text-neutral-medium-gray text-sm mb-4">{tier.subtitle}</p>
+                <div className="mb-4">
+                  <span className="text-4xl font-display font-bold text-royal">{tier.price}</span>
+                </div>
+                <p className="text-neutral-medium-gray">{tier.description}</p>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {tier.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <FontAwesomeIcon icon={faCheckCircle} className="text-royal w-5 h-5 mt-0.5 flex-shrink-0" />
+                    <span className="text-neutral-charcoal">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#contact"
+                className={`block text-center py-3 px-6 rounded-button font-medium transition-all duration-300 ${
+                  tier.highlight
+                    ? 'bg-royal text-white hover:bg-royal-light hover:shadow-button'
+                    : 'bg-transparent text-royal border-2 border-royal hover:bg-royal hover:text-white'
+                }`}
+              >
+                {tier.cta}
+              </a>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Money Back Guarantee */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-16 text-center"
+        >
+          <div className="inline-flex items-center gap-3 px-8 py-4 bg-accent-soft-green rounded-full">
+            <FontAwesomeIcon icon={faShieldAlt} className="text-royal w-6 h-6" />
+            <span className="text-neutral-charcoal font-semibold">
+              Your success is guaranteed. No results? No payment.
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// Final CTA Section
+function FinalCTASection() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  return (
+    <section ref={ref} className="section relative overflow-hidden" id="contact">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-royal to-royal-dark opacity-95" />
+      <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 blob" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 blob animation-delay-400" />
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="container-custom relative z-10 text-center"
+      >
+        <div className="max-w-3xl mx-auto text-white">
+          <h2 className="text-h2 font-bold mb-6">
+            Let&apos;s Turn Your Idea Into a Real Business
+          </h2>
+          <p className="text-xl mb-8 leading-relaxed opacity-90">
+            Book a free call. I&apos;ll tell you if your idea is technically viable, what it would take to build,
+            and what mistakes to avoid.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <a
+              href="mailto:chat@gilbertosantos.com"
+              className="bg-white text-royal px-10 py-4 rounded-button font-semibold text-lg hover:bg-neutral-light-gray transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+            >
+              <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
+              Book Your Free Strategy Call
+            </a>
+          </div>
+
+          {/* Contact Info */}
+          <div className="space-y-4 mb-8">
+            <p className="text-lg">
+              <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
+              <a href="mailto:chat@gilbertosantos.com" className="hover:underline">
+                chat@gilbertosantos.com
+              </a>
+            </p>
+            <p className="text-lg">
+              <FontAwesomeIcon icon={faLinkedin} className="mr-2" />
+              <a
+                href="https://linkedin.com/in/gilbertopsantosjr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                @gilbertopsantosjr
+              </a>
+            </p>
+          </div>
+
+          <p className="text-sm opacity-75">
+            No sales pitch. Just honest technical advice from someone who&apos;s built this a hundred times.
+          </p>
+        </div>
+      </motion.div>
+    </section>
+  )
+}
+
+// Footer
+function Footer() {
+  const currentYear = new Date().getFullYear()
+
+  return (
+    <footer className="bg-neutral-navy-dark text-white section">
+      <div className="container-custom">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <h3 className="text-2xl font-display font-bold mb-4">Gilberto Santos</h3>
+            <p className="text-neutral-light-gray leading-relaxed mb-6">
+              Principal Software Engineer helping founders turn ambitious ideas into scalable cloud products.
+              18+ years of enterprise and startup experience.
+            </p>
+            <div className="flex gap-4">
+              <a
+                href="https://linkedin.com/in/gilbertopsantosjr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-royal transition-colors duration-300"
+              >
+                <FontAwesomeIcon icon={faLinkedin} className="w-5 h-5" />
+              </a>
+              <a
+                href="https://github.com/gilbertosantos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-royal transition-colors duration-300"
+              >
+                <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
+              </a>
+              <a
+                href="https://twitter.com/gilbertosantos"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-royal transition-colors duration-300"
+              >
+                <FontAwesomeIcon icon={faTwitter} className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Services</h4>
+            <ul className="space-y-2 text-neutral-light-gray">
+              <li>
+                <a href="#services" className="hover:text-white transition-colors">
+                  SaaS Architecture
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-white transition-colors">
+                  MVP Development
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-white transition-colors">
+                  Cloud & AWS
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-white transition-colors">
+                  Microservices
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">Company</h4>
+            <ul className="space-y-2 text-neutral-light-gray">
+              <li>
+                <a href="#about" className="hover:text-white transition-colors">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#portfolio" className="hover:text-white transition-colors">
+                  Portfolio
+                </a>
+              </li>
+              <li>
+                <a href="#pricing" className="hover:text-white transition-colors">
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-white transition-colors">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-neutral-light-gray text-sm">
+              © {currentYear} Gilberto Santos. All rights reserved.
+            </p>
+            <div className="flex gap-6 text-sm text-neutral-light-gray">
+              <a href="#" className="hover:text-white transition-colors">
+                Privacy Policy
+              </a>
+              <a href="#" className="hover:text-white transition-colors">
+                Terms of Service
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
