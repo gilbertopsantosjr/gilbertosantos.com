@@ -1,0 +1,49 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1D2E"/>
+      <stop offset="100%" stop-color="#2D3142"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <g stroke="#6B61FF" stroke-width="1" opacity="0.15">
+    <path d="M0 100 H1200 M0 200 H1200 M0 300 H1200 M0 400 H1200 M0 500 H1200"/>
+    <path d="M100 0 V600 M200 0 V600 M300 0 V600 M400 0 V600 M500 0 V600 M600 0 V600 M700 0 V600 M800 0 V600 M900 0 V600 M1000 0 V600 M1100 0 V600"/>
+  </g>
+
+  <!-- Wordmark with lock -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <path d="M104 238 v-12 a18 18 0 0 1 36 0 v12" stroke="#6B61FF" stroke-width="7" fill="none"/>
+    <rect x="94" y="236" width="56" height="44" rx="10" fill="#6B61FF"/>
+    <circle cx="122" cy="256" r="6" fill="#1A1D2E"/>
+    <rect x="119" y="258" width="6" height="12" rx="2" fill="#1A1D2E"/>
+    <text x="172" y="276" font-size="52" font-weight="700" fill="#FFFFFF">ai-vault</text>
+    <text x="92" y="330" font-size="24" fill="#E8EAEF">Secrets &amp; API keys for humans and AI</text>
+    <text x="92" y="366" font-size="20" fill="#E8EAEF" opacity="0.6">Per-environment · REST API · MCP server</text>
+  </g>
+
+  <!-- Secrets panel -->
+  <g font-family="ui-monospace, 'SF Mono', Menlo, monospace">
+    <rect x="640" y="160" width="470" height="280" rx="18" fill="#FFFFFF" fill-opacity="0.06" stroke="#6B61FF" stroke-opacity="0.5" stroke-width="2"/>
+    <rect x="664" y="182" width="84" height="32" rx="8" fill="#4C40F7"/>
+    <text x="706" y="203" font-size="15" fill="#FFFFFF" text-anchor="middle">prod</text>
+    <rect x="758" y="182" width="104" height="32" rx="8" fill="#FFFFFF" fill-opacity="0.08"/>
+    <text x="810" y="203" font-size="15" fill="#E8EAEF" text-anchor="middle">staging</text>
+    <rect x="872" y="182" width="70" height="32" rx="8" fill="#FFFFFF" fill-opacity="0.08"/>
+    <text x="907" y="203" font-size="15" fill="#E8EAEF" text-anchor="middle">dev</text>
+
+    <g font-size="17">
+      <text x="664" y="262" fill="#FF9054">STRIPE_SECRET_KEY</text>
+      <text x="1086" y="262" fill="#E8EAEF" text-anchor="end">••••••••4f2a</text>
+      <line x1="664" y1="280" x2="1086" y2="280" stroke="#FFFFFF" stroke-opacity="0.08"/>
+      <text x="664" y="314" fill="#FF9054">OPENAI_API_KEY</text>
+      <text x="1086" y="314" fill="#E8EAEF" text-anchor="end">••••••••9c01</text>
+      <line x1="664" y1="332" x2="1086" y2="332" stroke="#FFFFFF" stroke-opacity="0.08"/>
+      <text x="664" y="366" fill="#FF9054">DATABASE_URL</text>
+      <text x="1086" y="366" fill="#E8EAEF" text-anchor="end">••••••••e7b3</text>
+    </g>
+    <rect x="664" y="392" width="178" height="30" rx="15" fill="#E6F9F5"/>
+    <circle cx="684" cy="407" r="5" fill="#0E8F6E"/>
+    <text x="760" y="412" font-size="14" fill="#0E8F6E" text-anchor="middle">agent: read-only</text>
+  </g>
+</svg>

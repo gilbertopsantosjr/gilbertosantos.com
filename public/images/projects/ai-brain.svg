@@ -1,0 +1,54 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8E6FF"/>
+      <stop offset="100%" stop-color="#D4D0FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <g opacity="0.55" fill="#FFFFFF">
+    <circle cx="1110" cy="70" r="150"/>
+    <circle cx="70" cy="560" r="120"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <circle cx="122" cy="248" r="32" fill="#4C40F7"/>
+    <g fill="#FFFFFF">
+      <circle cx="110" cy="238" r="5"/>
+      <circle cx="134" cy="238" r="5"/>
+      <circle cx="122" cy="260" r="5"/>
+    </g>
+    <g stroke="#FFFFFF" stroke-width="2.5">
+      <line x1="110" y1="238" x2="134" y2="238"/>
+      <line x1="110" y1="238" x2="122" y2="260"/>
+      <line x1="134" y1="238" x2="122" y2="260"/>
+    </g>
+    <text x="172" y="266" font-size="52" font-weight="700" fill="#1A1D2E">ai-brain</text>
+    <text x="92" y="330" font-size="24" fill="#2D3142">Institutional memory for decisions</text>
+    <text x="92" y="366" font-size="20" fill="#64748B">Why it was decided, not just what</text>
+  </g>
+
+  <!-- Decision graph -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600">
+    <g stroke="#4C40F7" stroke-width="3" opacity="0.45">
+      <line x1="720" y1="220" x2="870" y2="300"/>
+      <line x1="720" y1="380" x2="870" y2="300"/>
+      <line x1="870" y1="300" x2="1030" y2="210"/>
+      <line x1="870" y1="300" x2="1030" y2="390"/>
+      <line x1="1030" y1="210" x2="1030" y2="390"/>
+    </g>
+    <circle cx="870" cy="300" r="46" fill="#4C40F7"/>
+    <text x="870" y="296" fill="#FFFFFF" text-anchor="middle">Decision</text>
+    <text x="870" y="316" fill="#FFFFFF" text-anchor="middle" font-weight="400" font-size="13">#218</text>
+
+    <rect x="650" y="198" width="140" height="44" rx="22" fill="#FFFFFF"/>
+    <text x="720" y="226" fill="#2D3142" text-anchor="middle">Context</text>
+    <rect x="650" y="358" width="140" height="44" rx="22" fill="#FFFFFF"/>
+    <text x="720" y="386" fill="#2D3142" text-anchor="middle">Alternatives</text>
+    <rect x="962" y="188" width="136" height="44" rx="22" fill="#FFFFFF"/>
+    <text x="1030" y="216" fill="#2D3142" text-anchor="middle">Owner</text>
+    <rect x="962" y="368" width="136" height="44" rx="22" fill="#FF9054"/>
+    <text x="1030" y="396" fill="#FFFFFF" text-anchor="middle">Outcome</text>
+  </g>
+</svg>

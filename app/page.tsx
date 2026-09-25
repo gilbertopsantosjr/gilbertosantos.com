@@ -804,39 +804,45 @@ function PortfolioSection() {
 
   const projects = [
     {
-      title: 'Enterprise Microservices Platform',
-      category: 'Enterprise Architecture',
-      description: 'Scalable microservices platform handling millions of transactions',
-      image: '/images/project-1.svg',
-      tech: ['AWS', 'Kubernetes', 'Node.js', 'PostgreSQL'],
+      title: 'Promptfy',
+      category: 'SaaS · Live',
+      description:
+        'The home for AI prompts: a versioned private library, a public marketplace for creators, and one MCP endpoint that brings your whole library into Cursor or Claude.',
+      image: '/images/projects/promptfy.svg',
+      tech: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'MCP', 'Stripe'],
+      href: 'https://promptfy.it',
     },
     {
-      title: 'SaaS Analytics Dashboard',
-      category: 'Product Development',
-      description: 'Real-time analytics platform for growing SaaS companies',
-      image: '/images/project-2.svg',
-      tech: ['React', 'Python', 'Redis', 'AWS Lambda'],
+      title: 'Nosso Plano',
+      category: 'Fintech',
+      description:
+        'Multi-tenant household finance tracker for couples paying off shared debt and building savings together, with payoff projections and an immutable transaction log.',
+      image: '/images/projects/nosso-plano.svg',
+      tech: ['React', 'Vite', 'NestJS', 'PostgreSQL', 'AWS S3', 'Playwright'],
     },
     {
-      title: 'Event-Driven Payment System',
-      category: 'Financial Technology',
-      description: 'Secure, scalable payment processing with event sourcing',
-      image: '/images/project-3.svg',
-      tech: ['Java', 'Kafka', 'PostgreSQL', 'Docker'],
+      title: 'ai-vault',
+      category: 'Developer Tools',
+      description:
+        'Manage secrets and API keys across environments, for developers and AI agents alike, through a web app, a REST API and an MCP server.',
+      image: '/images/projects/ai-vault.svg',
+      tech: ['Next.js', 'NestJS', 'MCP', 'PostgreSQL', 'TypeScript'],
     },
     {
-      title: 'Cloud Migration Project',
-      category: 'Cloud Infrastructure',
-      description: 'Migrated legacy monolith to cloud-native architecture',
-      image: '/images/project-4.svg',
-      tech: ['AWS', 'Terraform', 'Jenkins', 'Monitoring'],
+      title: 'video-explainer',
+      category: 'AI Automation',
+      description:
+        'Turns a feature script into a branded, narrated 1080p explainer video, voiced with ElevenLabs and rendered with Remotion, driven from Claude Code.',
+      image: '/images/projects/video-explainer.svg',
+      tech: ['Remotion', 'React', 'ElevenLabs', 'Python', 'Claude Code'],
     },
     {
-      title: 'Real-Time Collaboration Tool',
-      category: 'SaaS Product',
-      description: 'Collaborative workspace with real-time synchronization',
-      image: '/images/project-5.svg',
-      tech: ['Next.js', 'WebSockets', 'Redis', 'PostgreSQL'],
+      title: 'ai-brain',
+      category: 'AI · Early Stage',
+      description:
+        'Institutional memory for organizations: capturing the context, alternatives and outcome behind each decision, so teams know why something was decided.',
+      image: '/images/projects/ai-brain.svg',
+      tech: ['AI', 'Knowledge Management'],
     },
   ]
 
@@ -853,7 +859,7 @@ function PortfolioSection() {
             Selected Work
           </h2>
           <p className="text-lg text-neutral-medium-gray dark:text-neutral-cool-gray leading-relaxed max-w-[55ch] mx-auto">
-            Real systems, real impact, real results
+            What I'm building right now
           </p>
         </motion.div>
 
@@ -866,7 +872,7 @@ function PortfolioSection() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className={`card overflow-hidden p-0 ${index === 0 ? 'md:col-span-2' : ''}`}
             >
-              <div className={`relative overflow-hidden bg-neutral-light-gray dark:bg-neutral-navy-dark ${index === 0 ? 'h-56 sm:h-72' : 'h-48 sm:h-56'}`}>
+              <div className={`relative overflow-hidden bg-neutral-light-gray dark:bg-neutral-navy-dark aspect-[2/1] sm:aspect-auto ${index === 0 ? 'sm:h-72' : 'sm:h-56'}`}>
                 <img
                   src={project.image}
                   alt={project.title}
@@ -880,6 +886,16 @@ function PortfolioSection() {
                 <span className="badge-tag mb-3">{project.category}</span>
                 <h3 className="text-xl font-bold text-neutral-charcoal dark:text-neutral-light-gray mb-3">{project.title}</h3>
                 <p className="text-neutral-medium-gray dark:text-neutral-cool-gray mb-4">{project.description}</p>
+                {project.href && (
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mb-4 font-semibold text-royal hover:text-royal-dark dark:text-royal-light transition-colors"
+                  >
+                    Visit {project.href.replace('https://', '')} →
+                  </a>
+                )}
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, i) => (
                     <span key={i} className="text-xs px-3 py-1 bg-neutral-light-gray dark:bg-neutral-navy-dark text-neutral-charcoal dark:text-neutral-light-gray rounded-full">
