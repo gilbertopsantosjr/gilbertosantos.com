@@ -1,0 +1,55 @@
+<svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E6F9F5"/>
+      <stop offset="100%" stop-color="#C9EFE6"/>
+    </linearGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF6B6B" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#FF6B6B" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <g opacity="0.5" fill="#FFFFFF">
+    <circle cx="1120" cy="520" r="170"/>
+    <circle cx="60" cy="40" r="110"/>
+  </g>
+
+  <!-- Wordmark -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <circle cx="112" cy="247" r="26" fill="#4C40F7"/>
+    <circle cx="146" cy="247" r="26" fill="#FF9054" opacity="0.9"/>
+    <text x="190" y="264" font-size="50" font-weight="700" fill="#1A1D2E">Nosso Plano</text>
+    <text x="90" y="330" font-size="24" fill="#2D3142">Household finance for couples</text>
+    <text x="90" y="366" font-size="20" fill="#64748B">Shared debt payoff · Savings goals</text>
+  </g>
+
+  <!-- Dashboard card -->
+  <g font-family="system-ui, -apple-system, sans-serif">
+    <rect x="620" y="160" width="490" height="280" rx="20" fill="#FFFFFF"/>
+    <text x="648" y="200" font-size="16" fill="#64748B">Debt-free by</text>
+    <text x="648" y="232" font-size="28" font-weight="700" fill="#1A1D2E">Mar 2028</text>
+    <rect x="960" y="182" width="124" height="32" rx="16" fill="#E6F9F5"/>
+    <text x="1022" y="203" font-size="15" font-weight="600" fill="#0E8F6E" text-anchor="middle">−14 months</text>
+
+    <line x1="648" y1="410" x2="1084" y2="410" stroke="#E8EAEF" stroke-width="2"/>
+    <line x1="648" y1="340" x2="1084" y2="340" stroke="#F5F6F8" stroke-width="2"/>
+    <line x1="648" y1="270" x2="1084" y2="270" stroke="#F5F6F8" stroke-width="2"/>
+
+    <!-- savings bars -->
+    <g fill="#4C40F7">
+      <rect x="668" y="386" width="22" height="24" rx="4" opacity="0.35"/>
+      <rect x="730" y="378" width="22" height="32" rx="4" opacity="0.45"/>
+      <rect x="792" y="366" width="22" height="44" rx="4" opacity="0.55"/>
+      <rect x="854" y="352" width="22" height="58" rx="4" opacity="0.65"/>
+      <rect x="916" y="336" width="22" height="74" rx="4" opacity="0.75"/>
+      <rect x="978" y="318" width="22" height="92" rx="4" opacity="0.85"/>
+      <rect x="1040" y="298" width="22" height="112" rx="4"/>
+    </g>
+
+    <!-- debt payoff curve -->
+    <path d="M648 262 C730 280 800 320 880 356 S1020 404 1084 408 L1084 410 L648 410 Z" fill="url(#area)"/>
+    <path d="M648 262 C730 280 800 320 880 356 S1020 404 1084 408" stroke="#FF6B6B" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="1084" cy="408" r="7" fill="#FFFFFF" stroke="#FF6B6B" stroke-width="4"/>
+  </g>
+</svg>
