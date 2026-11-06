@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import ContactSection from './components/ContactSection'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -85,6 +86,9 @@ export default function Home() {
 
       {/* Final CTA Section */}
       <FinalCTASection />
+
+      {/* Contact Form */}
+      <ContactSection />
 
       {/* Footer */}
       <Footer />
@@ -1276,7 +1280,7 @@ function FinalCTASection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section ref={ref} className="section relative overflow-hidden" id="contact">
+    <section ref={ref} className="section relative overflow-hidden" id="book-call">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-royal to-royal-dark" />
 
@@ -1380,7 +1384,7 @@ function Footer() {
                 <FontAwesomeIcon icon={faLinkedin} className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
-                href="https://github.com/gilbertosantos"
+                href="https://github.com/gilbertopsantosjr"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
