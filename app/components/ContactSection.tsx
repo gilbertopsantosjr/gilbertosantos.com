@@ -24,7 +24,7 @@ declare global {
 
 const SOCIALS = [
   { label: 'LinkedIn', href: 'https://linkedin.com/in/gilbertopsantosjr', icon: faLinkedin },
-  { label: 'GitHub', href: 'https://github.com/gilbertosantos', icon: faGithub },
+  { label: 'GitHub', href: 'https://github.com/gilbertopsantosjr', icon: faGithub },
   { label: 'X / Twitter', href: 'https://twitter.com/gilbertosantos', icon: faXTwitter },
 ]
 

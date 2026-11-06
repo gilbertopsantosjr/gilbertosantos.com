@@ -1384,7 +1384,7 @@ function Footer() {
                 <FontAwesomeIcon icon={faLinkedin} className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
-                href="https://github.com/gilbertosantos"
+                href="https://github.com/gilbertopsantosjr"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
